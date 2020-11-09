@@ -26,7 +26,7 @@
         </template>
 
         <v-list>
-          <v-list-item>
+          <v-list-item router to="/login">
             <v-list-item-title>Login</v-list-item-title>
           </v-list-item>
         </v-list>

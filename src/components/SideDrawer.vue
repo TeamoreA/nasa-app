@@ -1,6 +1,7 @@
 <template>
   <v-card flat height="400px">
     <v-list dense>
+      <v-subheader class="title">Filter by date</v-subheader>
       <v-list-item>
         <v-list-item-content>
           <v-menu
