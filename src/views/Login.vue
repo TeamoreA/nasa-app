@@ -4,11 +4,11 @@
       <h1 class="display-1">Login</h1>
     </v-card-title>
     <v-card-text>
-      <v-form>
+      <v-form @submit.prevent>
         <v-text-field
-          label="username"
+          label="email"
           prepend-icon="mdi-account-circle"
-          v-model="user.username"
+          v-model="user.email"
         />
         <v-text-field
           label="password"
@@ -22,22 +22,22 @@
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
-      <v-btn color="primary">login</v-btn>
+      <v-btn @click="login()" color="primary">login</v-btn>
       <v-spacer></v-spacer>
-      <v-btn
-        text
-        color="secondary"
-        size="small"
-        class="text-lighten-1"
-        router
-        to="/register"
-        >Do not have an account?</v-btn
+      <a href="/register" class="text-decoration-none font-weight-light body-2"
+        >Do not have an account?</a
       >
     </v-card-actions>
+    <a
+      href="/password-reset"
+      class="text-decoration-none mx-2 my-4 font-weight-light body-2"
+      >Forgot password?</a
+    >
   </v-card>
 </template>
 
 <script>
+import UserDataService from "../services/UserDataService";
 export default {
   name: "Login",
   components: {},
@@ -45,11 +45,29 @@ export default {
     return {
       showPassword: false,
       user: {
-        username: "",
+        email: "",
         password: ""
       }
     };
   },
-  methods: {}
+  methods: {
+    login() {
+      UserDataService.login(this.user)
+        .then(() => {
+          //   localStorage.setItem("user_name", this.user.name);
+          localStorage.setItem("user_email", this.user.email);
+          this.$toasted
+            .success("User has been logged in successfully")
+            .goAway(2000);
+          this.$router.push({ name: "Dashboard" });
+        })
+        .catch(e => {
+          console.log(e);
+          this.$toasted
+            .error("An error has occured please try again")
+            .goAway(2000);
+        });
+    }
+  }
 };
 </script>
