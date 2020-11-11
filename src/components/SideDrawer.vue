@@ -24,7 +24,7 @@
             </template>
             <v-date-picker
               v-model="start_date"
-              @input="end_menu = false"
+              @input="start_menu = false"
             ></v-date-picker>
           </v-menu>
         </v-list-item-content>
@@ -32,7 +32,7 @@
       <v-list-item>
         <v-list-item-content>
           <v-menu
-            v-model="menu2"
+            v-model="end_menu"
             :close-on-content-click="false"
             :nudge-right="40"
             transition="scale-transition"
@@ -51,7 +51,7 @@
             </template>
             <v-date-picker
               v-model="end_date"
-              @input="menu2 = false"
+              @input="end_menu = false"
             ></v-date-picker>
           </v-menu>
         </v-list-item-content>

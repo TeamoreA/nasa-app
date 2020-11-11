@@ -1,7 +1,7 @@
 <template>
   <v-app class="grey lighten-4">
     <!-- Navbar here -->
-    <NavBar />
+    <NavBar v-bind:logged-in="loggedIn"></NavBar>
     <!-- Page content here -->
     <v-main class="mx-4 mb-4">
       <router-view></router-view>
@@ -13,6 +13,7 @@
 
 <script>
 import NavBar from "@/components/NavBar";
+import { auth } from "./firebase";
 
 export default {
   name: "App",
@@ -20,9 +21,22 @@ export default {
   components: {
     NavBar
   },
-
-  data: () => ({
-    //
-  })
+  data() {
+    return {
+      loggedIn: false
+    };
+  },
+  methods: {
+    isLoggedIn() {
+      localStorage.getItem("loggedIn")
+        ? (this.loggedIn = true)
+        : (this.loggedIn = false);
+      console.log("loggedIn");
+      console.log(auth.currentUser);
+    }
+  },
+  created() {
+    this.isLoggedIn();
+  }
 };
 </script>
