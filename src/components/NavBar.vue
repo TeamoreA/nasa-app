@@ -71,6 +71,7 @@ export default {
             .success("User has been logged out successfully")
             .goAway(2000);
           this.$router.push({ name: "Login" });
+          location.reload();
         })
         .catch(e => {
           console.log(e);

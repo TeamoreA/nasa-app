@@ -60,6 +60,7 @@ export default {
             .success("User has been logged in successfully")
             .goAway(2000);
           this.$router.push({ name: "Dashboard" });
+          location.reload();
         })
         .catch(e => {
           console.log(e);

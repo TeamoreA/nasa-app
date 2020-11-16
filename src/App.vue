@@ -28,11 +28,11 @@ export default {
   },
   methods: {
     isLoggedIn() {
-      localStorage.getItem("loggedIn")
+      auth.currentUser
         ? (this.loggedIn = true)
         : (this.loggedIn = false);
-      console.log("loggedIn");
-      console.log(auth.currentUser);
+      console.log("loggedIn user email");
+      console.log(auth.currentUser.email);
     }
   },
   created() {

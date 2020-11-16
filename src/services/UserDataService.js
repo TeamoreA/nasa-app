@@ -24,7 +24,7 @@ class UserDataService {
     // return fb.auth.createUserWithEmailAndPassword(form.email, form.password);
   }
   async fetchUserProfile() {
-    const user_id = localStorage.setItem("user_id");
+    const user_id = localStorage.getItem("user_id");
     const userProfile = await fb.usersCollection.doc(user_id).get();
     if (router.currentRoute.path === "/login") {
       router.push("/");

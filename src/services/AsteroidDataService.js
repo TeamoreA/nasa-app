@@ -8,6 +8,11 @@ class AsteroidDataService {
       params: { api_key: api_key }
     });
   }
+  filterByDate(start_date, end_date) {
+    return http.get("/rest/v1/feed", {
+      params: { start_date: start_date, end_date: end_date, api_key: api_key }
+    });
+  }
   async create(asteroid) {
     return await fb.asteroidsCollection.add({
       createdOn: new Date(),
